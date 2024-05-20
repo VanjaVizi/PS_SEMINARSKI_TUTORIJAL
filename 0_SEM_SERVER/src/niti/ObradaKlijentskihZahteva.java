@@ -6,6 +6,8 @@ package niti;
 
 import controller.Controller;
 import domen.Pacijent;
+import domen.Racun;
+import domen.StavkaRacuna;
 import domen.Zaposleni;
 import java.io.IOException;
 import java.net.Socket;
@@ -69,8 +71,26 @@ public class ObradaKlijentskihZahteva extends Thread {
                     Controller.getInstance().azurirajPacijenta(p1);
                    odgovor.setOdgovor(null);                 
                     break; 
+                    
+                    
+                case UCITAJ_RACUNE:
+                    List<Racun> racuni = Controller.getInstance().ucitajRacune();
+                    System.out.println("KLASA OKZ: ");
+                    System.out.println(racuni);
+                    odgovor.setOdgovor(racuni);                 
+                    break; 
+                case UCITAJ_STAVKE:
+                    List<StavkaRacuna> stavke = Controller.getInstance().ucitajStavke((int)zahtev.getParametar());
+                    System.out.println("KLASA OKZ: ");
+                    System.out.println(stavke);
+                    odgovor.setOdgovor(stavke);                 
+                    break; 
+ 
                 default:
                     System.out.println("GRESKA, TA OPERACIJA NE POSTOJI");
+                    
+                    
+                    
             }
             posiljalac.posalji(odgovor);
              } catch (Exception ex) {

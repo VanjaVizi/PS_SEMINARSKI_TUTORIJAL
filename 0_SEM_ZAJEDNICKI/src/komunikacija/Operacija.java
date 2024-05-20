@@ -16,5 +16,7 @@ public enum Operacija implements Serializable {
     OBRISI_PACIJENTA, 
     DODAJ_PACIJENTA, 
     AZURIRAJ_PACIJENTA,
+    UCITAJ_RACUNE,
+    UCITAJ_STAVKE,
     
 }

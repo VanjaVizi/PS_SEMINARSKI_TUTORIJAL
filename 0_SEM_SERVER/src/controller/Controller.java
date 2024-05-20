@@ -5,6 +5,8 @@
 package controller;
 
 import domen.Pacijent;
+import domen.Racun;
+import domen.StavkaRacuna;
 import domen.Zaposleni;
 import java.util.List;
 import operacija.pacijenti.UcitajPacijenteSO;
@@ -12,6 +14,8 @@ import operacija.login.LoginOperacija;
 import operacija.pacijenti.AzurirajPacijentaSO;
 import operacija.pacijenti.KreirajPacijentaSO;
 import operacija.pacijenti.ObrisiPacijentaSO;
+import operacija.racuni.UcitajRacuneSO;
+import operacija.racuni.stavke.UcitajStavkeSO;
 
 
 /**
@@ -61,6 +65,22 @@ public class Controller {
         
         AzurirajPacijentaSO operacija= new AzurirajPacijentaSO();
         operacija.izvrsi(p, null);
+        
+    }
+
+    public List<Racun> ucitajRacune() throws Exception {
+        UcitajRacuneSO operacija = new UcitajRacuneSO();
+        operacija.izvrsi(null, null);
+        System.out.println("KLASA CONTROLLER :"+operacija.getRacuni());
+        return operacija.getRacuni();
+         
+    }
+
+    public List<StavkaRacuna> ucitajStavke(int id) throws Exception {
+         UcitajStavkeSO operacija = new UcitajStavkeSO();
+        operacija.izvrsi(id, null);
+        System.out.println("KLASA CONTROLLER :"+operacija.getStavke());
+        return operacija.getStavke();
         
     }
 

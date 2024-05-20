@@ -5,6 +5,8 @@
 package komunikacija;
 
 import domen.Pacijent;
+import domen.Racun;
+import domen.StavkaRacuna;
 import domen.Zaposleni;
 import java.io.IOException;
 import java.net.Socket;
@@ -109,7 +111,36 @@ public class Komunikacija {
         }
         
     }
-    
+
+    public List<Racun> ucitajRacune() {
+         Zahtev zahtev = new Zahtev(Operacija.UCITAJ_RACUNE, null);
+         List<Racun> racuni = new ArrayList<>();
+        
+         posiljalac.posalji(zahtev);
+         ////
+         Odgovor odg = (Odgovor) primalac.primi();
+         racuni = (List<Racun>) odg.getOdgovor();
+         System.out.println("KLASA KOMUNIKACIJA");
+         System.out.println(racuni);
+         return racuni;
+        
+        
+    }
+
+    public List<StavkaRacuna> ucitajStavke(int racunID) {
+         Zahtev zahtev = new Zahtev(Operacija.UCITAJ_STAVKE, racunID);
+         List<StavkaRacuna> stavke = new ArrayList<>();
+        
+         posiljalac.posalji(zahtev);
+         ////
+         Odgovor odg = (Odgovor) primalac.primi();
+         stavke = (List<StavkaRacuna>) odg.getOdgovor();
+         System.out.println("KLASA KOMUNIKACIJA");
+         System.out.println(stavke);
+         return stavke; 
+    }
+
+ 
     
     
     

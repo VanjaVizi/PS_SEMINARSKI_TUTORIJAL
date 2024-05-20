@@ -10,12 +10,14 @@ import forme.FormaMod;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazPacijenataForma;
+import forme.PrikazRacunaForma;
 import java.util.HashMap;
 import java.util.Map;
 import kontroleri.DodajPacijentaController;
 import kontroleri.GlavnaFormaController;
 import kontroleri.LoginController;
 import kontroleri.PrikazPacijenataController;
+import kontroleri.PrikazRacunaController;
 
 /**
  *
@@ -28,6 +30,10 @@ public class Cordinator {
     private GlavnaFormaController glavnaFormaController;
     private PrikazPacijenataController ppController;
     private DodajPacijentaController dpController;
+    private PrikazRacunaController prController;
+    
+    
+    
     private Map<String, Object> parametri;
     
     
@@ -82,7 +88,10 @@ public class Cordinator {
         dpController.otvoriFormu(FormaMod.IZMENI);
     }
 
-  
+    public void otvoriPrikazRacunaFormu() {
+         prController = new PrikazRacunaController(new PrikazRacunaForma());
+        prController.otvoriFormu();
+    }
     public void osveziFormu() {
         ppController.osveziFormu();
     }
