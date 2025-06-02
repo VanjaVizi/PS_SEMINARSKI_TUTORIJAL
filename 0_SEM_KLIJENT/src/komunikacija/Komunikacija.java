@@ -5,8 +5,10 @@
 package komunikacija;
 
 import domen.Pacijent;
+import domen.Pregled;
 import domen.Racun;
 import domen.StavkaRacuna;
+import domen.Tretman;
 import domen.Zaposleni;
 import java.io.IOException;
 import java.net.Socket;
@@ -138,6 +140,50 @@ public class Komunikacija {
          System.out.println("KLASA KOMUNIKACIJA");
          System.out.println(stavke);
          return stavke; 
+    }
+
+    public void obrisiRacun(Racun r) throws Exception {
+         Zahtev zahtev = new Zahtev(Operacija.OBRISI_RACUN, r);
+         posiljalac.posalji(zahtev);
+         
+          Odgovor odg = (Odgovor) primalac.primi();
+          if(odg.getOdgovor()==null){
+              System.out.println("USPEH");
+          }else{
+                System.out.println("GRESKA");
+                ((Exception)odg.getOdgovor()).printStackTrace();
+                throw new Exception("GRESKA");
+          }
+    }
+    public List<Pregled> ucitajPreglede() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_PREGLEDE, null);
+        List<Pregled> pregledi = new ArrayList<>();
+
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        pregledi = (List<Pregled>) odg.getOdgovor();
+        return pregledi;
+    }
+
+    public List<Tretman> ucitajTretmane() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_TRETMANE, null);
+        List<Tretman> tretmani = new ArrayList<>();
+
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        tretmani = (List<Tretman>) odg.getOdgovor();
+        return tretmani;
+    }
+
+    public void dodajRacun(Racun r) {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_RACUN, r);
+         posiljalac.posalji(zahtev);
+          Odgovor odg = (Odgovor) primalac.primi();
+         if(odg.getOdgovor()==null){
+              System.out.println("USPEH");
+         }   else{
+            System.out.println("GRESKA");
+        }
     }
 
  

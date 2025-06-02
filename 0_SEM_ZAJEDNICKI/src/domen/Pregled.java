@@ -1,20 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domen;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
  * @author vanja
  */
-public class Pregled  implements ApstraktniDomenskiObjekat{
+public class Pregled implements ApstraktniDomenskiObjekat {
     private int id;
     private String naziv;
     private double cena; 
+
+    public Pregled() {
+    }
+
+    public Pregled(int id, String naziv, double cena) {
+        this.id = id;
+        this.naziv = naziv;
+        this.cena = cena;
+    }
 
     public int getId() {
         return id;
@@ -39,9 +46,28 @@ public class Pregled  implements ApstraktniDomenskiObjekat{
     public void setCena(double cena) {
         this.cena = cena;
     }
-    
-    
-    //TODO
+
+    @Override
+    public String toString() {
+        return naziv + " (" + cena + " RSD)";
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, naziv, cena);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Pregled other = (Pregled) obj;
+        return id == other.id &&
+               Double.compare(other.cena, cena) == 0 &&
+               Objects.equals(naziv, other.naziv);
+    }
 
     @Override
     public String vratiNazivTabele() {
@@ -49,37 +75,42 @@ public class Pregled  implements ApstraktniDomenskiObjekat{
     }
 
     @Override
-    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public String vratiKoloneZaUbacivanje() {
-         return "naziv,cena";
+        return "naziv,cena";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() { 
-        return  "'"+naziv+"',"+cena;
+        return "'" + naziv + "'," + cena;
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "pregled.id=" + id;
     }
 
     @Override
     public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int id = rs.getInt("id");
+        String naziv = rs.getString("naziv");
+        double cena = rs.getDouble("cena");
+        return new Pregled(id, naziv, cena);
     }
 
     @Override
     public String vratiVrednostiZaIzmenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "naziv='" + naziv + "', cena=" + cena;
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String naziv = rs.getString("naziv");
+            double cena = rs.getDouble("cena");
+            lista.add(new Pregled(id, naziv, cena));
+        }
+        return lista;
+    }
 }

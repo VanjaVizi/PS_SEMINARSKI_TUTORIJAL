@@ -37,7 +37,7 @@ public class Racun implements ApstraktniDomenskiObjekat{
 
             // Kreiraj Zaposleni objekat
             Zaposleni zaposleni = new Zaposleni();
-            zaposleni.setZaposleniID(rs.getInt("zaposleniID"));
+            zaposleni.setZaposleniID(rs.getInt("zaposleni.zaposleniID"));
             zaposleni.setIme(rs.getString("zaposleni.ime"));
             zaposleni.setPrezime(rs.getString("zaposleni.prezime"));
             racun.setZaposleni(zaposleni);
@@ -73,7 +73,8 @@ public class Racun implements ApstraktniDomenskiObjekat{
     }
    @Override
     public String vratiVrednostiZaUbacivanje() {
-          return  "'"+datum+"', "+zaposleni.getZaposleniID()+", "+
+        java.sql.Date sqlDatum = new java.sql.Date(datum.getTime());
+          return  "'"+sqlDatum+"', "+zaposleni.getZaposleniID()+", "+
                   pregled.getId()+", "+pacijent.getPacijentID();
     } 
     @Override

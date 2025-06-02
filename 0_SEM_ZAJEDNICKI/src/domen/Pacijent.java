@@ -33,7 +33,7 @@ public class Pacijent implements ApstraktniDomenskiObjekat{
 
     @Override
     public String toString() {
-        return  ime ;
+        return  ime+"("+rasa+")";
     }
 
     public int getPacijentID() {

@@ -6,8 +6,10 @@ package niti;
 
 import controller.Controller;
 import domen.Pacijent;
+import domen.Pregled;
 import domen.Racun;
 import domen.StavkaRacuna;
+import domen.Tretman;
 import domen.Zaposleni;
 import java.io.IOException;
 import java.net.Socket;
@@ -85,7 +87,39 @@ public class ObradaKlijentskihZahteva extends Thread {
                     System.out.println(stavke);
                     odgovor.setOdgovor(stavke);                 
                     break; 
- 
+                case OBRISI_RACUN:
+                   try{
+                        Racun r = (Racun) zahtev.getParametar(); 
+                        Controller.getInstance().obrisiRacun(r);
+                        odgovor.setOdgovor(null);
+                   }catch (Exception e){
+                       odgovor.setOdgovor(e);
+                   }
+                   break;
+                case UCITAJ_PREGLEDE:
+                    try {
+                        List<Pregled> pregledi = Controller.getInstance().ucitajPreglede();
+                        odgovor.setOdgovor(pregledi);
+                    } catch (Exception e) {
+                        odgovor.setOdgovor(e);
+                    }
+
+                    break;
+
+            case UCITAJ_TRETMANE:
+                try {
+                    List<Tretman> tretmani = Controller.getInstance().ucitajTretmane();
+                    odgovor.setOdgovor(tretmani);
+                } catch (Exception e) {
+                    odgovor.setOdgovor(e);
+                }
+                break;
+            case DODAJ_RACUN:
+                   Racun r = (Racun) zahtev.getParametar(); 
+                    Controller.getInstance().dodajRacun(r);
+                   odgovor.setOdgovor(null);                 
+                    break; 
+                   
                 default:
                     System.out.println("GRESKA, TA OPERACIJA NE POSTOJI");
                     

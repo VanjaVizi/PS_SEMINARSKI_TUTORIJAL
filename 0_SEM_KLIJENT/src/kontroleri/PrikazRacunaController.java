@@ -12,10 +12,14 @@ import forme.PrikazRacunaForma;
 import forme.model.ModelTabelePacijent;
 import forme.model.ModelTabeleRacuni;
 import forme.model.ModelTabeleStavkaRacuna;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import komunikacija.Komunikacija;
 
 /**
  *
@@ -38,8 +42,6 @@ public class PrikazRacunaController {
 
     public void pripremiFormu() {
         List<Racun> racuni = komunikacija.Komunikacija.getInstanca().ucitajRacune();
-        System.out.println("KLASA PRCONTROLLER");
-        System.out.println(racuni);
         ModelTabeleRacuni mtp = new ModelTabeleRacuni(racuni);
         prf.getjTableRacuni().setModel(mtp);
         
@@ -47,14 +49,37 @@ public class PrikazRacunaController {
         
         
         List<StavkaRacuna> stavke = new ArrayList<>();
-        System.out.println("KLASA PRCONTROLLER");
-        System.out.println(stavke);
         ModelTabeleStavkaRacuna mtsr = new ModelTabeleStavkaRacuna(stavke);
         prf.getjTableStavke().setModel(mtsr);
     }
 
     private void addActionListener() {
-        
+        //obrisiAddActionListener
+         prf.obrisiAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = prf.getjTableRacuni().getSelectedRow();
+                if(red==-1){
+                     JOptionPane.showMessageDialog(prf, "Sistem ne moze da obrise racun", "Greska", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    ModelTabeleRacuni mtr = (ModelTabeleRacuni) prf.getjTableRacuni().getModel();
+                    Racun r = mtr.getLista().get(red);
+                    
+                   List<StavkaRacuna> stavke = Komunikacija.getInstanca().ucitajStavke(r.getRacunID());
+                   r.setStavke(stavke);
+
+                    try{
+                        Komunikacija.getInstanca().obrisiRacun(r);
+                        JOptionPane.showMessageDialog(prf, "Sistem je uspesno obrisao racun", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                        pripremiFormu();
+                    }catch(Exception exc){
+                        JOptionPane.showMessageDialog(prf, "Sistem ne moze da obrise racun", "Greska", JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+                            
+                }
+            }
+        });
     }
 
     private void addMouseListener() {

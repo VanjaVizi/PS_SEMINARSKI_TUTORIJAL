@@ -4,6 +4,8 @@
  */
 package forme;
 
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JTable;
 
 /**
@@ -32,7 +34,7 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
         jTableRacuni = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableStavke = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButtonObrisi = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -65,7 +67,7 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTableStavke);
 
-        jButton1.setText("Obrisi");
+        jButtonObrisi.setText("Obrisi");
 
         jButton2.setText("Azuriraj");
 
@@ -83,7 +85,7 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonObrisi))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,7 +103,7 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
                         .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
-                            .addComponent(jButton1))
+                            .addComponent(jButtonObrisi))
                         .addGap(32, 32, 32)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -129,13 +131,22 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
     public JTable getjTableStavke() {
         return jTableStavke;
     }
+
+    public JButton getjButtonObrisi() {
+        return jButtonObrisi;
+    }
  
+    public void obrisiAddActionListener(ActionListener actionListener) {
+        jButtonObrisi.addActionListener(actionListener);
+    }
+ 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonObrisi;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableRacuni;

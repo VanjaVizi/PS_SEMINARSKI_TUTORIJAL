@@ -57,6 +57,18 @@ public class ModelTabeleStavkaRacuna extends AbstractTableModel {
         this.lista = lista;
     }
 
+    public void dodajStavku(StavkaRacuna s) {
+        int trenutniRB= lista.size()+1;
+        s.setRb(trenutniRB);
+        lista.add(s);
+        fireTableDataChanged();
+    }
+
+    public void obrisiStavku(StavkaRacuna s) {
+        lista.remove(s);
+         fireTableDataChanged();
+    }
+
   
  
  

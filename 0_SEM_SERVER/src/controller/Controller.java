@@ -5,8 +5,10 @@
 package controller;
 
 import domen.Pacijent;
+import domen.Pregled;
 import domen.Racun;
 import domen.StavkaRacuna;
+import domen.Tretman;
 import domen.Zaposleni;
 import java.util.List;
 import operacija.pacijenti.UcitajPacijenteSO;
@@ -14,8 +16,12 @@ import operacija.login.LoginOperacija;
 import operacija.pacijenti.AzurirajPacijentaSO;
 import operacija.pacijenti.KreirajPacijentaSO;
 import operacija.pacijenti.ObrisiPacijentaSO;
+import operacija.pregledi.UcitajPregledeSO;
+import operacija.racuni.DodajRacunSO;
+import operacija.racuni.ObrisiRacunSO;
 import operacija.racuni.UcitajRacuneSO;
 import operacija.racuni.stavke.UcitajStavkeSO;
+import operacija.tretmani.UcitajTretmaneSO;
 
 
 /**
@@ -82,6 +88,31 @@ public class Controller {
         System.out.println("KLASA CONTROLLER :"+operacija.getStavke());
         return operacija.getStavke();
         
+    }
+
+    public void obrisiRacun(Racun r) throws Exception {
+        ObrisiRacunSO operacija = new ObrisiRacunSO();
+        operacija.izvrsi(r, null);
+        
+        
+    }
+    public List<Pregled> ucitajPreglede() throws Exception {
+        UcitajPregledeSO operacija = new UcitajPregledeSO();
+        operacija.izvrsi(null, null);
+        System.out.println("KLASA CONTROLLER :" + operacija.getPregledi());
+        return operacija.getPregledi();
+    }
+
+    public List<Tretman> ucitajTretmane() throws Exception {
+        UcitajTretmaneSO operacija = new UcitajTretmaneSO();
+        operacija.izvrsi(null, null);
+        System.out.println("KLASA CONTROLLER :" + operacija.getTretmani());
+        return operacija.getTretmani();
+    }
+
+    public void dodajRacun(Racun r) throws Exception {
+        DodajRacunSO operacija = new DodajRacunSO();
+        operacija.izvrsi(r, null);
     }
 
          

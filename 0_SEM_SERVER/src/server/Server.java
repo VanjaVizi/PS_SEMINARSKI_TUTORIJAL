@@ -40,7 +40,9 @@ public class Server extends Thread{
             
             }
         } catch (IOException ex) {
-            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+             if (!kraj) { //ispravka da ne izlazi greska kada se server ugasi
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
        
     }

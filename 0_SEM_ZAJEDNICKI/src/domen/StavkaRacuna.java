@@ -16,6 +16,7 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat{
     private int rb;
     private int kolicina;
     private double cena;
+    private int racunId;
     private Tretman tretman;
     
     //TODO
@@ -23,6 +24,14 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat{
     @Override
     public String vratiNazivTabele() {
         return "stavkaracuna";
+    }
+
+    public int getRacunId() {
+        return racunId;
+    }
+
+    public void setRacunId(int racunId) {
+        this.racunId = racunId;
     }
 
 
@@ -34,14 +43,12 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return rb+", "+racunId+", "+kolicina+","+cena+", "+tretman.getTretmanID();
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        //rb=2 AND racun=5
-       // return "rb="+rb+" AND racun="+racun.getId();
-       return "";
+       return " rb="+rb+ " AND racun="+racunId;
     }
     @Override
     public String vratiVrednostiZaIzmenu() {
