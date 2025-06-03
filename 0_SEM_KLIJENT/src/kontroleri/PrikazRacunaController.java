@@ -4,6 +4,7 @@
  */
 package kontroleri;
 
+import cordinator.Cordinator;
 import domen.Pacijent;
 import domen.Racun;
 import domen.StavkaRacuna;
@@ -76,6 +77,47 @@ public class PrikazRacunaController {
                         JOptionPane.showMessageDialog(prf, "Sistem ne moze da obrise racun", "Greska", JOptionPane.ERROR_MESSAGE);
                     }
                     
+                            
+                }
+            }
+        });
+          prf.obrisiStavkuAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = prf.getjTableStavke().getSelectedRow();
+                if(red==-1){
+                     JOptionPane.showMessageDialog(prf, "Sistem ne moze da obrise stavku", "Greska", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    ModelTabeleStavkaRacuna mtsr = (ModelTabeleStavkaRacuna) prf.getjTableStavke().getModel();
+                    StavkaRacuna sr = mtsr.getLista().get(red);
+                    
+                
+
+                    try{
+                        Komunikacija.getInstanca().obrisiStavku(sr);
+                        JOptionPane.showMessageDialog(prf, "Sistem je uspesno obrisao stavku racuna", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                        mtsr.obrisiStavku(sr);
+                        //pripremiFormu();
+                    }catch(Exception exc){
+                        JOptionPane.showMessageDialog(prf, "Sistem ne moze da obrise stavku racuna", "Greska", JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+                            
+                }
+            }
+        });
+          
+        prf.azurirajStavkuAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = prf.getjTableStavke().getSelectedRow();
+                if(red==-1){
+                     JOptionPane.showMessageDialog(prf, "Sistem ne moze da azurira stavku", "Greska", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    ModelTabeleStavkaRacuna mtsr =  (ModelTabeleStavkaRacuna) prf.getjTableStavke().getModel();
+                    StavkaRacuna sr = mtsr.getLista().get(red);
+                    Cordinator.getInstanca().otvoriIzmeniStavkuFormu();
+                     Cordinator.getInstanca().dodajParam("stavka_za_izmenu", sr);
                             
                 }
             }

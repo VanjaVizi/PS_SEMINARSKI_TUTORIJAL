@@ -35,9 +35,9 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableStavke = new javax.swing.JTable();
         jButtonObrisi = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonAzurirajRaacun = new javax.swing.JButton();
+        jButtonObrisiStavku = new javax.swing.JButton();
+        jButtonAzurirajStavku = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,11 +69,11 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
 
         jButtonObrisi.setText("Obrisi");
 
-        jButton2.setText("Azuriraj");
+        jButtonAzurirajRaacun.setText("Azuriraj");
 
-        jButton3.setText("Obrisi stavku");
+        jButtonObrisiStavku.setText("Obrisi stavku");
 
-        jButton4.setText("Azuriraj");
+        jButtonAzurirajStavku.setText("Azuriraj");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,7 +83,7 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jButtonAzurirajRaacun)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonObrisi))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -91,8 +91,8 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonObrisiStavku)
+                    .addComponent(jButtonAzurirajStavku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
@@ -102,7 +102,7 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
+                            .addComponent(jButtonAzurirajRaacun)
                             .addComponent(jButtonObrisi))
                         .addGap(32, 32, 32)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -110,9 +110,9 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton3)
+                                .addComponent(jButtonObrisiStavku)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4))
+                                .addComponent(jButtonAzurirajStavku))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(344, Short.MAX_VALUE))
         );
@@ -139,17 +139,49 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
     public void obrisiAddActionListener(ActionListener actionListener) {
         jButtonObrisi.addActionListener(actionListener);
     }
+
+    public JButton getjButtonAzurirajRaacun() {
+        return jButtonAzurirajRaacun;
+    }
+
+    public void setjButtonAzurirajRaacun(JButton jButtonAzurirajRaacun) {
+        this.jButtonAzurirajRaacun = jButtonAzurirajRaacun;
+    }
+
+    public JButton getjButtonAzurirajStavku() {
+        return jButtonAzurirajStavku;
+    }
+
+    public void setjButtonAzurirajStavku(JButton jButtonAzurirajStavku) {
+        this.jButtonAzurirajStavku = jButtonAzurirajStavku;
+    }
+
+    public JButton getjButtonObrisiStavku() {
+        return jButtonObrisiStavku;
+    }
+
+    public void setjButtonObrisiStavku(JButton jButtonObrisiStavku) {
+        this.jButtonObrisiStavku = jButtonObrisiStavku;
+    }
  
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonAzurirajRaacun;
+    private javax.swing.JButton jButtonAzurirajStavku;
     private javax.swing.JButton jButtonObrisi;
+    private javax.swing.JButton jButtonObrisiStavku;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableRacuni;
     private javax.swing.JTable jTableStavke;
     // End of variables declaration//GEN-END:variables
+
+    public void obrisiStavkuAddActionListener(ActionListener actionListener) {
+        jButtonObrisiStavku.addActionListener(actionListener);
+    }
+
+    public void azurirajStavkuAddActionListener(ActionListener actionListener) {
+        jButtonAzurirajStavku.addActionListener(actionListener);
+    }
 }

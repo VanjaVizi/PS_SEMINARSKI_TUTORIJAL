@@ -186,6 +186,36 @@ public class Komunikacija {
         }
     }
 
+    public void obrisiStavku(StavkaRacuna sr) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_STAVKU, sr);
+         posiljalac.posalji(zahtev);
+         
+          Odgovor odg = (Odgovor) primalac.primi();
+          if(odg.getOdgovor()==null){
+              System.out.println("USPEH");
+          }else{
+                System.out.println("GRESKA");
+                ((Exception)odg.getOdgovor()).printStackTrace();
+                throw new Exception("GRESKA");
+          }
+    }
+
+    public void azurirajStavku(StavkaRacuna sr) {
+         Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_STAVKU, sr);
+         posiljalac.posalji(zahtev);
+         
+         //
+          Odgovor odg = (Odgovor) primalac.primi();
+         if(odg.getOdgovor()==null){
+              System.out.println("USPEH");
+              cordinator.Cordinator.getInstanca().osveziFormu();
+         }   else{
+            System.out.println("GRESKA");
+        }
+        
+        
+    }
+
  
     
     

@@ -22,6 +22,9 @@ public enum Operacija implements Serializable {
     UCITAJ_PREGLEDE,
     UCITAJ_TRETMANE,
     DODAJ_RACUN,
+    OBRISI_STAVKU,
+    AZURIRAJ_STAVKU,
+    AZURIRAJ_RACUN,
 
     
 }

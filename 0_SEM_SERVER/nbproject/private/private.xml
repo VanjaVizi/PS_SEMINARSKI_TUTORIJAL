@@ -2,6 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/operacija/pacijenti/UcitajPacijenteSO.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/operacija/racuni/DodajRacunSO.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/niti/ObradaKlijentskihZahteva.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/controller/Controller.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/operacija/tretmani/UcitajTretmaneSO.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/repository/db/DbRepository.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/repository/Repository.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/repository/db/impl/DbRepositotyGeneric.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/operacija/pregledi/UcitajPregledeSO.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/operacija/racuni/stavke/UcitajStavkeSO.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/repository/db/DbConnectionFactory.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/operacija/racuni/stavke/AzurirajStavkuSO.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/operacija/racuni/stavke/ObrisiStavkuSO.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/operacija/racuni/ObrisiRacunSO.java</file>
+            <file>file:/C:/Users/vanja/Documents/NetBeansProjects/0_SEM_SERVER/src/operacija/racuni/UcitajRacuneSO.java</file>
+        </group>
     </open-files>
 </project-private>

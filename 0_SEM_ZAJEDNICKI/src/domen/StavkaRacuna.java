@@ -67,6 +67,7 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat{
             stavka.setRb(rs.getInt("rb"));
             stavka.setKolicina(rs.getInt("kolicina"));
             stavka.setCena(rs.getDouble("stavkaracuna.cena"));
+            stavka.setRacunId(rs.getInt("stavkaracuna.racun"));
 
             Tretman tretman = new Tretman();
             tretman.setTretmanID(rs.getInt("tretmanID"));

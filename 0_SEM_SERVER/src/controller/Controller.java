@@ -20,6 +20,8 @@ import operacija.pregledi.UcitajPregledeSO;
 import operacija.racuni.DodajRacunSO;
 import operacija.racuni.ObrisiRacunSO;
 import operacija.racuni.UcitajRacuneSO;
+import operacija.racuni.stavke.AzurirajStavkuSO;
+import operacija.racuni.stavke.ObrisiStavkuSO;
 import operacija.racuni.stavke.UcitajStavkeSO;
 import operacija.tretmani.UcitajTretmaneSO;
 
@@ -113,6 +115,18 @@ public class Controller {
     public void dodajRacun(Racun r) throws Exception {
         DodajRacunSO operacija = new DodajRacunSO();
         operacija.izvrsi(r, null);
+    }
+
+    public void obrisiStavkuRacuna(StavkaRacuna sr) throws Exception {
+        ObrisiStavkuSO operacija = new ObrisiStavkuSO();
+        operacija.izvrsi(sr, null);
+        
+        
+    }
+
+    public void azurirajStavku(StavkaRacuna sr) throws Exception {
+        AzurirajStavkuSO operacija= new AzurirajStavkuSO();
+        operacija.izvrsi(sr, null);
     }
 
          

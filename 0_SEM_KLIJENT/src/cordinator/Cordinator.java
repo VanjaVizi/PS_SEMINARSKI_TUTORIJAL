@@ -6,6 +6,7 @@ package cordinator;
 
 import domen.Zaposleni;
 import forme.DodajPacijentaForm;
+import forme.DodajStavkuForm; 
 import forme.FormaMod;
 import forme.GlavnaForma;
 import forme.LoginForma;
@@ -18,7 +19,7 @@ import kontroleri.GlavnaFormaController;
 import kontroleri.LoginController;
 import kontroleri.PrikazPacijenataController;
 import kontroleri.PrikazRacunaController;
-
+import kontroleri.DodajStavkuController;
 /**
  *
  * @author vanja
@@ -31,6 +32,7 @@ public class Cordinator {
     private PrikazPacijenataController ppController;
     private DodajPacijentaController dpController;
     private PrikazRacunaController prController;
+    private DodajStavkuController dsController;
     
     
     
@@ -94,6 +96,11 @@ public class Cordinator {
     }
     public void osveziFormu() {
         ppController.osveziFormu();
+    }
+
+    public void otvoriIzmeniStavkuFormu() {
+        dsController = new DodajStavkuController(new DodajStavkuForm());
+        dsController.otvoriFormu(FormaMod.IZMENI);
     }
 
     
