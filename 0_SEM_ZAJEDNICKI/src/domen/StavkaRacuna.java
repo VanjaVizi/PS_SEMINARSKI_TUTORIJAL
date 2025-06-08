@@ -50,10 +50,13 @@ public class StavkaRacuna implements ApstraktniDomenskiObjekat{
     public String vratiPrimarniKljuc() {
        return " rb="+rb+ " AND racun="+racunId;
     }
-    @Override
-    public String vratiVrednostiZaIzmenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        @Override
+        public String vratiVrednostiZaIzmenu() {
+            return "kolicina=" + kolicina +
+                   ", cena=" + cena +
+                   ", tretman=" + tretman.getTretmanID();
+        }
+
     @Override
     public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

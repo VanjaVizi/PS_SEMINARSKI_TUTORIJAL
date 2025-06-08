@@ -8,6 +8,7 @@ import cordinator.Cordinator;
 import domen.Pacijent;
 import domen.Racun;
 import domen.StavkaRacuna;
+import forme.FormaMod;
 import forme.PrikazPacijenataForma;
 import forme.PrikazRacunaForma;
 import forme.model.ModelTabelePacijent;
@@ -81,26 +82,50 @@ public class PrikazRacunaController {
                 }
             }
         });
-          prf.obrisiStavkuAddActionListener(new ActionListener() {
+          prf.obrisiAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int red = prf.getjTableStavke().getSelectedRow();
+                int red = prf.getjTableRacuni().getSelectedRow();
                 if(red==-1){
-                     JOptionPane.showMessageDialog(prf, "Sistem ne moze da obrise stavku", "Greska", JOptionPane.ERROR_MESSAGE);
+                     JOptionPane.showMessageDialog(prf, "Sistem ne moze da obrise racun", "Greska", JOptionPane.ERROR_MESSAGE);
                 }else{
-                    ModelTabeleStavkaRacuna mtsr = (ModelTabeleStavkaRacuna) prf.getjTableStavke().getModel();
-                    StavkaRacuna sr = mtsr.getLista().get(red);
+                    ModelTabeleRacuni mtr = (ModelTabeleRacuni) prf.getjTableRacuni().getModel();
+                    Racun r = mtr.getLista().get(red);
                     
-                
+                   List<StavkaRacuna> stavke = Komunikacija.getInstanca().ucitajStavke(r.getRacunID());
+                   r.setStavke(stavke);
 
                     try{
-                        Komunikacija.getInstanca().obrisiStavku(sr);
-                        JOptionPane.showMessageDialog(prf, "Sistem je uspesno obrisao stavku racuna", "USPEH", JOptionPane.INFORMATION_MESSAGE);
-                        mtsr.obrisiStavku(sr);
-                        //pripremiFormu();
+                        Komunikacija.getInstanca().obrisiRacun(r);
+                        JOptionPane.showMessageDialog(prf, "Sistem je uspesno obrisao racun", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                        pripremiFormu();
                     }catch(Exception exc){
-                        JOptionPane.showMessageDialog(prf, "Sistem ne moze da obrise stavku racuna", "Greska", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(prf, "Sistem ne moze da obrise racun", "Greska", JOptionPane.ERROR_MESSAGE);
                     }
+                    
+                            
+                }
+            }
+        });
+         
+         
+          prf.azurirajRacunAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = prf.getjTableRacuni().getSelectedRow();
+                if(red==-1){
+                     JOptionPane.showMessageDialog(prf, "Sistem ne moze da obrise racun", "Greska", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    
+                    ModelTabeleRacuni mtr = (ModelTabeleRacuni) prf.getjTableRacuni().getModel();
+                    Racun r = mtr.getLista().get(red);
+                    
+                   List<StavkaRacuna> stavke = Komunikacija.getInstanca().ucitajStavke(r.getRacunID());
+                   r.setStavke(stavke);
+                   Cordinator.getInstanca().dodajParam("racun_za_izmenu", r);
+                   Cordinator.getInstanca().otvoriGlavnuFormu(FormaMod.IZMENI);
+
+                   
                     
                             
                 }

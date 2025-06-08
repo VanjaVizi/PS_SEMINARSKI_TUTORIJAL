@@ -89,7 +89,11 @@ public class Racun implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaIzmenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         java.sql.Date sqlDatum = new java.sql.Date(datum.getTime());
+        return "datum='" + sqlDatum + "', " +
+           "zaposleni=" + zaposleni.getZaposleniID() + ", " +
+           "pregled=" + pregled.getId() + ", " +
+           "pacijent=" + pacijent.getPacijentID();
     }
 
     public int getRacunID() {

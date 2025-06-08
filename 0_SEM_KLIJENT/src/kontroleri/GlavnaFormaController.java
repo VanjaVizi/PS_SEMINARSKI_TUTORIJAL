@@ -11,6 +11,7 @@ import domen.Racun;
 import domen.StavkaRacuna;
 import domen.Tretman;
 import domen.Zaposleni;
+import forme.FormaMod;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.model.ModelTabeleStavkaRacuna;
@@ -129,7 +130,55 @@ public class GlavnaFormaController {
                  
              }
          });
-        
+         gf.izmeniRacunAddActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 try {
+                     //
+                     izmeni(e);
+                 } catch (Exception ex) {
+                     Logger.getLogger(GlavnaFormaController.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+             }
+
+             private void izmeni(ActionEvent e) throws Exception  {  //throws ParseException
+                  try{
+                      
+                 
+                    Racun r = new Racun();
+                    int id= Integer.parseInt(gf.getjTextFieldID().getText());
+                    r.setRacunID(id);
+                    String datumString= gf.getjTextFieldDatum().getText();
+                     SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+                     Date datum =  sdf.parse(datumString);
+                    r.setDatum(datum);
+                    r.setZaposleni(Cordinator.getInstanca().getUlogovani());
+                    r.setPacijent((Pacijent) gf.getjComboBoxPacijenti().getSelectedItem());
+                    r.setPregled((Pregled) gf.getjComboBoxPregledi().getSelectedItem());
+                        
+                    ModelTabeleStavkaRacuna mts = (ModelTabeleStavkaRacuna) gf.getjTable1().getModel();
+                    List<StavkaRacuna> stavke = mts.getLista();
+                    r.setStavke(stavke);
+
+                      System.out.println("KLASA GFK");
+                      System.out.println(r);
+                    System.out.println(r.getStavke());
+                     Komunikacija.getInstanca().izmeniRacun(r);
+                    JOptionPane.showMessageDialog(null, "Sistem  je uspesno izmeni racun", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+
+                     
+                  }catch(Exception ex){
+                     ex.printStackTrace();
+                     JOptionPane.showMessageDialog(null, "Sistem ne moze da izmeni racun", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                  
+                  }
+                
+                 
+                
+                 
+                 
+             }
+         });
         
         
         
@@ -145,6 +194,8 @@ public class GlavnaFormaController {
     }
 
     public void otvoriFormu() {
+        
+        gf.getjButtonIzmeniRacun().setVisible(false);
         Zaposleni ulogovani = cordinator.Cordinator.getInstanca().getUlogovani();
         String imePrezime = ulogovani.getIme()+" "+ulogovani.getPrezime();
         gf.setVisible(true);
@@ -177,6 +228,35 @@ public class GlavnaFormaController {
         for (Tretman t : sviTretmani) {
             gf.getjComboBoxTretmani().addItem(t);
         }
+    }
+
+    public void otvoriFormu(FormaMod formaMod) {
+        popuniComboboxeve();
+        Zaposleni ulogovani = cordinator.Cordinator.getInstanca().getUlogovani();
+        String imePrezime = ulogovani.getIme()+" "+ulogovani.getPrezime();
+        gf.setVisible(true);
+        gf.getjLabelUlogovani().setText(imePrezime);
+        
+        List<StavkaRacuna> praznaLista = new ArrayList<>();
+        ModelTabeleStavkaRacuna mts =  new ModelTabeleStavkaRacuna(praznaLista);
+        gf.getjTable1().setModel(mts);
+        if(formaMod==FormaMod.IZMENI){
+            gf.getjButtonKreirajRacun().setVisible(false);
+            Racun r = (Racun) Cordinator.getInstanca().vratiParam("racun_za_izmenu");
+            mts.setLista(r.getStavke());
+            gf.getjTextFieldID().setEnabled(false);
+            gf.getjTextFieldID().setText( r.getRacunID()+"");
+           gf.getjComboBoxPregledi().setSelectedItem(r.getPregled());
+             gf.getjComboBoxPacijenti().setSelectedItem(r.getPacijent());
+             
+             SimpleDateFormat formater = new SimpleDateFormat("dd.MM.yyyy");
+             String datumString = formater.format(r.getDatum());
+             gf.getjTextFieldDatum().setText(datumString);
+            
+        }
+        
+        
+        
     }
 
       

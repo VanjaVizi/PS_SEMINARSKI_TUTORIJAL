@@ -184,4 +184,8 @@ public class PrikazRacunaForma extends javax.swing.JFrame {
     public void azurirajStavkuAddActionListener(ActionListener actionListener) {
         jButtonAzurirajStavku.addActionListener(actionListener);
     }
+
+    public void azurirajRacunAddActionListener(ActionListener actionListener) {
+        jButtonAzurirajRaacun.addActionListener(actionListener);
+    }
 }

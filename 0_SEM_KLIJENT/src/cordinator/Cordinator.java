@@ -103,5 +103,13 @@ public class Cordinator {
         dsController.otvoriFormu(FormaMod.IZMENI);
     }
 
+    public void otvoriGlavnuFormu(FormaMod formaMod) {
+        glavnaFormaController = new GlavnaFormaController(new GlavnaForma());
+        glavnaFormaController.otvoriFormu(formaMod);
+        
+        
+        
+    }
+
     
 }

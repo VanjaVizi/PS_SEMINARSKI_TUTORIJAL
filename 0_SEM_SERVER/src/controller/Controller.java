@@ -17,6 +17,7 @@ import operacija.pacijenti.AzurirajPacijentaSO;
 import operacija.pacijenti.KreirajPacijentaSO;
 import operacija.pacijenti.ObrisiPacijentaSO;
 import operacija.pregledi.UcitajPregledeSO;
+import operacija.racuni.AzurirajRacunSO;
 import operacija.racuni.DodajRacunSO;
 import operacija.racuni.ObrisiRacunSO;
 import operacija.racuni.UcitajRacuneSO;
@@ -127,6 +128,12 @@ public class Controller {
     public void azurirajStavku(StavkaRacuna sr) throws Exception {
         AzurirajStavkuSO operacija= new AzurirajStavkuSO();
         operacija.izvrsi(sr, null);
+    }
+
+    public void azurirajRacun(Racun r) throws Exception {
+        AzurirajRacunSO operacija= new AzurirajRacunSO();
+        operacija.izvrsi(r, null);
+        
     }
 
          
